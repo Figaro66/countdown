@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            transition: background 1s;
+        }
+        .countdown-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 1s;
+        }
+        .countdown-container p {
+            font-size: 2em;
+            margin: 0;
+        }
+        #countdown {
+            font-size: 3em;
+            font-weight: bold;
+        }
+        .monday {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+        }
+        .tuesday {
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+        }
+        .wednesday {
+            background: linear-gradient(to right, #ffafbd, #ffc3a0);
+            color: white;
+        }
+        .thursday {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            color: white;
+        }
+        .friday {
+            background: linear-gradient(to right, #f953c6, #b91d73);
+            color: white;
+        }
+        .saturday {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: white;
+        }
+        .sunday {
+            background: linear-gradient(to right, #ff6a00, #ee0979);
+            color: white;
+        }
+    </style>
+    <script>
+        function calculateDaysLeft() {
+            const targetDate = new Date("August 1, 2024");
+            const currentDate = new Date();
+            const timeDiff = targetDate - currentDate;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            return daysLeft;
+        }
+
+        function updateCountdown() {
+            const daysLeft = calculateDaysLeft();
+            document.getElementById("countdown").textContent = daysLeft;
+        }
+
+        function applyDayStyle() {
+            const daysOfWeek = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+            const currentDay = new Date().getDay();
+            const body = document.body;
+            const container = document.querySelector('.countdown-container');
+
+            body.classList.add(daysOfWeek[currentDay]);
+            container.classList.add(daysOfWeek[currentDay]);
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            updateCountdown();
+            applyDayStyle();
+        });
+    </script>
+</head>
+<body>
+    <div class="countdown-container">
+        <p><span id="countdown"></span> nap van hátra indulásig!</p>
+    </div>
+</body>
+</html>
